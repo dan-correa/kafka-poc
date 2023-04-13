@@ -26,12 +26,13 @@ public class Consumer {
 
     @KafkaListener(topics ="${myapp.kafka.topic}",groupId ="xyz")
     public void consume( @Payload String message, Acknowledgment ack) throws IOException {
-        ack.acknowledge();
+
         JsonNode jsonNode = objectMapper.readValue(message, JsonNode.class);
         ItemsPoc item = new ItemsPoc();
         item.setId(jsonNode.get("id").asInt());
         item.setMessage(jsonNode.get("message").asText());
         messageRepository.addItemsPoc(item);
         log.info("Menssagem de id " +item.getId()+ "recebida no consumidor");
+        ack.acknowledge();
     }
 }
