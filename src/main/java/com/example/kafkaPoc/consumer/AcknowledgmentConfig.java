@@ -1,4 +1,4 @@
-package com.example.kafkaPoc.producer;
+package com.example.kafkaPoc.consumer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
@@ -16,7 +16,7 @@ import org.springframework.kafka.listener.ContainerProperties;
 
 @Configuration
 @EnableKafka
-public class KafkaConfig {
+public class AcknowledgmentConfig {
 
 
     @Autowired
