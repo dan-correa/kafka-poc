@@ -15,4 +15,4 @@ spring:
 
 myapp:
  kafka:
-  topic: pocPDI2
+  topic: pocTopic
