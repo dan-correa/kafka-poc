@@ -1,6 +1,6 @@
-package com.example.kafkaPoc.repository;
+package org.example.kafkaPoc.repository;
 
-import com.example.kafkaPoc.domain.ItemsPoc;
+import org.example.kafkaPoc.domain.ItemsPoc;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

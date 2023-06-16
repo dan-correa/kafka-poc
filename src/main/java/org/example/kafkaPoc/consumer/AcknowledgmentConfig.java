@@ -1,4 +1,4 @@
-package com.example.kafkaPoc.consumer;
+package org.example.kafkaPoc.consumer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
@@ -19,17 +19,15 @@ import org.springframework.kafka.listener.ContainerProperties;
 public class AcknowledgmentConfig {
 
 
-    @Autowired
-    KafkaProperties properties;
 
     @Autowired
     @Lazy
     ConsumerFactory<String, String> factory;
 
     @Bean
-    public ConsumerFactory<String, String> consumerFactory() {
+    public ConsumerFactory<String, String> consumerFactory(KafkaProperties kafkaProperties) {
         return new DefaultKafkaConsumerFactory<>(
-                properties.buildConsumerProperties());
+                kafkaProperties.buildConsumerProperties());
     }
 
     @Bean

@@ -1,8 +1,7 @@
-package com.example.kafkaPoc.controller;
+package org.example.kafkaPoc.controller;
 
-import com.example.kafkaPoc.producer.Producer;
-import com.example.kafkaPoc.domain.ItemsPoc;
-import com.example.kafkaPoc.repository.MessageRepository;
+import org.example.kafkaPoc.producer.Producer;
+import org.example.kafkaPoc.repository.MessageRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,14 +21,14 @@ public class KafkaController {
 
 
 
-    @RequestMapping(value = "/send", method = RequestMethod.POST)
+    @PostMapping(value = "/send")
     @ApiOperation(value = "create", tags = "message")
     public ResponseEntity<Void> createItem (@RequestBody String item){
         producer.sendMessage(item);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/getAll", method = RequestMethod.GET)
+    @GetMapping(value = "/getAll")
     @ApiOperation(value = "get all", tags = "messages")
     public ResponseEntity<String>  getAllItems() {
         return ResponseEntity.ok(messageRepository.getAllItems());

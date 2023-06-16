@@ -1,18 +1,22 @@
 server:
   port: 9090
 spring:
+  config:
+    activate:
+      on-profile:
+        - qa
   kafka:
     consumer:
-      bootstrap-servers: localhost:9092
+      bootstrap-servers: docker-kafka-1:9092
       auto-offset-reset : earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       enable-auto-commit: false
     producer:
-      bootstrap-servers: localhost:9092
+      bootstrap-servers: docker-kafka-1:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
 
 myapp:
  kafka:
-   topic: pocTopic
+  topic: pocTopic

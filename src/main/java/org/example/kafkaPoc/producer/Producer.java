@@ -1,6 +1,5 @@
-package com.example.kafkaPoc.producer;
+package org.example.kafkaPoc.producer;
 
-import com.example.kafkaPoc.domain.ItemsPoc;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +18,23 @@ public class Producer {
 
    @Value("${myapp.kafka.topic}")
    private String topic;
-
     public void sendMessage(String message){
-        log.info("Mensagem enviada do produtor -> " + message);
+        log.info("Mensagem enviada do produtor ->  {}",message);
 
         kafkaTemplate.send(topic,message);
+    }
+
+    static String toCamelCase(String s){
+        StringBuilder resultCamelCase = new StringBuilder();
+        for(int i = 0 ; i < s.length(); i++){
+            String aux = String.valueOf(s.charAt(i));
+            if(aux.equalsIgnoreCase("-")){
+                resultCamelCase.insert(resultCamelCase.length()+i,aux.toUpperCase());
+            }else{
+                resultCamelCase.insert(resultCamelCase.length()+i,aux);
+            }
+        }
+
+        return String.valueOf(resultCamelCase);
     }
 }
